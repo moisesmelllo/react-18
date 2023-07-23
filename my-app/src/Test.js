@@ -1,5 +1,10 @@
-export const Test = () => {
+const Greeting = () => {
   return (
-    <div>Test</div>
+    <h2>Greeting</h2>
   )
 }
+export default Greeting;
+
+const root = ReactDOM.createRoot(document.getElementById('root'))
+
+root.render(<Greeting/>)

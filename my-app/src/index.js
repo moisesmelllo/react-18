@@ -2,39 +2,43 @@ import React from "react";
 import ReactDOM from 'react-dom/client';
 import './index.css';
 
-const BookList = () => {
+const books = [
+    {
+    author: 'Jordan Moore',
+    title: 'Interesting Facts For Curious Minds',
+    img: 'https://images-na.ssl-images-amazon.com/images/I/81yfsIOijJL._AC_UL600_SR600,400_.jpg',
+    id: 1,
+    },
+    {
+    author: 'James Clear',
+    title: 'Atomic Habits',
+    img: 'https://images-na.ssl-images-amazon.com/images/I/81wgcld4wxL._AC_UL900_SR900,600_.jpg',
+    id: 2,
+    }
+]
+
+function BookList() {
   return (
     <section className="booklist">
-        <Book />
-        <Book /> 
-        <Book /> 
-        <Book />
+      {books.map((book) => {
+        console.log(book)
+        const { img, title, author, id } = book
+        return <Book img={img} title={title} author={author} key={id}/>
+      })}
     </section>
   )
 }
-export default BookList
 
-const Book = () => {
+const Book = (props) => {
+  console.log(props)
   return (
     <article className="book">
-        <Image/>
-        <Title/>
-        <Author/>
+      <img src={props.img} alt={props.title} />
+      <h2>{props.title}</h2>
+      <h4>{props.author} </h4>
     </article>
   )
 }
-
-const Image = () => (
-  <img
-    src="https://images-na.ssl-images-amazon.com/images/I/81yfsIOijJL._AC_UL600_SR600,400_.jpg"
-    alt="American Prometheus"
-  ></img>
-)
-const Title = () => {
-    return <h2>American Prometheus</h2>
-}
-const Author = () => <h4>Robert Oppenheimer</h4>
-
 const root = ReactDOM.createRoot(document.getElementById('root'))
 
 root.render(<BookList />)
